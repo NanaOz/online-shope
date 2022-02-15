@@ -2,21 +2,21 @@ package com.company.menu;
 
 import com.company.Product;
 import com.company.User;
-import com.company.data.AppData;
 import com.company.helper.ScannerHelper;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MenuBasket {
     private static final String BASKET_MENU = "\n\t1 - Buy products"
             + "\n\t2 - Clear the shopping cart"
             + "\n\t3 - Select a product to change"
-            + "\n\t0 - Back";
+            + "\n\t0 - Go back to the main menu";
     private static final String CHANGE_BASKET = "\nChoose what you want to do:"
-            + "\n\t1 - Change items in the shopping cart"
-            + "\n\t2 - Go back to the main menu";
+            + "\n\t1 - Remove a product from the shopping cart"
+            + "\n\t2 - Change the number of product"
+            + "\n\t0 - Go back to the main menu";
 
+    private static int NUM_SELECT_PRODUCT_IN_BASKET;
 
     public static void startActionsMenuInBasket(User user) {
         boolean itContinues = true;
@@ -29,10 +29,10 @@ public class MenuBasket {
                     clearBasket(user);
                     break;
                 case 3:
-//                    selectProductInBasket();
+                    selectProductInBasket(user);
                     break;
                 case 0:
-                    itContinues = false;
+                    MenuAuthorizedUsers.startMenuWhoIsLogged(user);
                     break;
                 default:
                     System.out.println(MenuStart.INCORRECT);
@@ -41,19 +41,18 @@ public class MenuBasket {
         }
     }
 
-    public static void startActionsMenuInBasketWithSelectedProduct(int num) {
+    public static void startActionsMenuInBasketWithSelectedProduct(Product product, User user) {
         boolean itContinues = true;
         while (itContinues) {
-            System.out.println(CHANGE_BASKET);
-            Scanner in = new Scanner(System.in);
-            int action = in.nextInt();
-            switch (action) {
+            switch (ScannerHelper.getIntFromInput(CHANGE_BASKET + MenuStart.SELECT_ACTION)) {
                 case 1:
-//                    clearBasket();
-//                    deleteProductBasket();
+                    deleteProductBasket(product, user);
                     break;
                 case 2:
-//                    startMenuWhoIsLogged();
+                    //TODO добавить изменение количества товара
+                    break;
+                case 0:
+                    startActionsMenuInBasket(user);
                     break;
                 default:
                     System.out.println(MenuStart.INCORRECT);
@@ -62,57 +61,35 @@ public class MenuBasket {
         }
     }
 
-    private static void selectProductForAddToBasket(ArrayList<Product> products) {
-//        viewProductFromCategory();
+    private static void selectProductInBasket(User user) {
         System.out.println("Select the product:\n");
-        Scanner in = new Scanner(System.in);
-        int num = in.nextInt();
-        Product product = products.get(num - 1);
-//        addProductInBasket(product);
+        ArrayList<Product> products = user.getBasket().getProducts();
+        NUM_SELECT_PRODUCT_IN_BASKET = ScannerHelper.readInt() - 1;
+        Product product = products.get(NUM_SELECT_PRODUCT_IN_BASKET);
+        System.out.println("Selected: " + product.getName() + " " + product.getPrice());
+        startActionsMenuInBasketWithSelectedProduct(product, user);
     }
 
-//    private static void viewProductBasket() {
-//        System.out.println("Products in your shopping cart:\n");
-//        User user = AppData.getUsers().get(LOGGED_IN_USER);
-//        user.showBasket();
-//        ArrayList<Product> products = new ArrayList<>();
-////        startMenuToBasket();
-//        startActionsMenuInBasket();
-//    }
-//
-//    //TODO не выбирает и не проваливается в меню с изменение конкретного продукта
-//    private static void selectProductInBasket() {
-//        viewProductBasket();
-//        System.out.println("Select the product:\n");
-//        Scanner in = new Scanner(System.in);
-//        NUM_SELECT_PRODUCT = in.nextInt();
-////        Product product = products.get(NUM_SELECT_PRODUCT - 1);
-////        startActionMenu(product);
-//        startActionsMenuInBasketWithSelectedProduct(NUM_SELECT_PRODUCT);
-//    }
+    private static void viewProductBasket(User user) {
+        System.out.println("Products in your shopping cart:\n");
+        user.showBasket();
+        startActionsMenuInBasket(user);
+    }
 
-    //TODO допилить.
-//    private static void deleteProductBasket(Product product) {
-//        User user = AppData.getUsers().get(LOGGED_IN_USER);
-//        user.deleteFromBasket(product);
-////        viewProductBasket();
-////        System.out.println("Select the product you want to delete:\n");
-////        Scanner in = new Scanner(System.in);
-////        int num = in.nextInt();
-////        AppData.baskets.remove(num);
-//        System.out.println("Product has been removed from your shopping cart.\n");
-//        startMenuWhoIsLogged(user);
-//    }
-//
+    private static void deleteProductBasket(Product product, User user) {
+        user.deleteFromBasket(product);
+        System.out.println("Product has been removed from your shopping cart.\n");
+        viewProductBasket(user);
+    }
 
-//    private static void buyProduct() {
-//        User user = AppData.getUsers().get(LOGGED_IN_USER);
-//        user.deleteAllFromBasket();
+//TODO дописать, при покупке сохраняется в мапу.
+//    private static void buyProduct(User user) {
+//
 //
 //        System.out.println("Congratulations!Products purchased!");
-//        startMenuWhoIsLogged(user);
+//        MenuAuthorizedUsers.startMenuWhoIsLogged(user);
 //    }
-//
+
     private static void clearBasket(User user) {
         user.deleteAllFromBasket();
         System.out.println("Your shopping cart is empty....");
