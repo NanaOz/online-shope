@@ -114,9 +114,7 @@ public class MenuBasket {
 //    }
 //
     private static void clearBasket(User user) {
-//        User user = AppData.getUsers().get(LOGGED_IN_USER);
         user.deleteAllFromBasket();
         System.out.println("Your shopping cart is empty....");
-//        startMenuWhoIsLogged(user);
     }
 }

@@ -47,6 +47,7 @@ public class MenuAuthorization {
         for (User u : users) {
             if (u.equals(user) == true) {
                 MenuAuthorizedUsers.startMenuWhoIsLogged(user);
+                System.out.println("Welcome, " + user.getLogin());
                 return user;
             }
         }

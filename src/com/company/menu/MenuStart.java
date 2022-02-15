@@ -8,7 +8,7 @@ import com.company.helper.ScannerHelper;
 import java.util.ArrayList;
 
 public class MenuStart {
-    private static final String START_MENU = "Welcome!"
+    private static final String START_MENU = "***WELCOME***"
             + "\n\t1 - Show product"
             + "\n\t2 - Authorization"
             + "\n\t0 - Exit";
@@ -16,8 +16,8 @@ public class MenuStart {
             + "\n\t2 - Go back to the main menu"
             + "\n\t0 - Exit the program";
 
-    public static final String INCORRECT = "There is no such action!";
-    public static final String SELECT_ACTION = "\nSelect an action:\n ";
+    public static final String INCORRECT = "THERE IS NO SUCH ACTION!!!";
+    public static final String SELECT_ACTION = "\nSELECT AN ACTION:\n ";
 
     private static int NUM_SELECT_CATEGORY;
 

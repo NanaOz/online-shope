@@ -15,7 +15,6 @@ public class MenuAuthorizedUsers {
     private static final String ACTIONS_PRODUCT = "\n\t1 - Add product to the shopping cart"
             + "\n\t0 - Go back";
 
-
     private static int NUM_SELECT_CATEGORY;
     private static int NUM_SELECT_PRODUCT;
 
@@ -26,8 +25,8 @@ public class MenuAuthorizedUsers {
                 case 1:
                     viewProduct(user);
                     break;
-                case 3:
-//                    viewProductBasket();
+                case 2:
+                    viewProductBasket(user);
                     break;
                 case 0:
                     System.exit(0);
@@ -73,10 +72,10 @@ public class MenuAuthorizedUsers {
 
     private static void selectProduct(ArrayList<Product> products, User user) {
         System.out.println("Select the product:\n");
-        NUM_SELECT_PRODUCT = ScannerHelper.readInt();
+        NUM_SELECT_PRODUCT = ScannerHelper.readInt() - 1;
         Product product = products.get(NUM_SELECT_PRODUCT);
         System.out.println("Selected: " + product.getName() + " " + product.getPrice());
-        switch (ScannerHelper.getIntFromInput(ACTIONS_PRODUCT + MenuStart.SELECT_ACTION)){
+        switch (ScannerHelper.getIntFromInput(ACTIONS_PRODUCT + MenuStart.SELECT_ACTION)) {
             case 1:
                 addProductInBasket(product, user);
                 break;
@@ -90,5 +89,12 @@ public class MenuAuthorizedUsers {
         user.addProductToBasket(product);
         System.out.println("Great! The product has been added to the cart.\n");
 
+    }
+
+    private static void viewProductBasket(User user) {
+        System.out.println("Products in your shopping cart:\n");
+        user.showBasket();
+//        ArrayList<Product> products = new ArrayList<>();
+        MenuBasket.startActionsMenuInBasket(user);
     }
 }
