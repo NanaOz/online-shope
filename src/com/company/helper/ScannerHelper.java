@@ -9,6 +9,9 @@ public class ScannerHelper {
     private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     private final static Scanner READER = new Scanner(System.in);
 
+   /**
+    * метод заставляет вводить только числа
+    **/
     public static int getIntFromInput(String text) {
         boolean ifInputError = true;
         int number = 0;

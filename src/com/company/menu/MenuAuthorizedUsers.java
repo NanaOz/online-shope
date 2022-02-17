@@ -5,12 +5,15 @@ import com.company.Product;
 import com.company.User;
 import com.company.helper.ScannerHelper;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MenuAuthorizedUsers {
     private static final String MAIN_MENU = "Select the desired menu item:"
             + "\n\t1 - Show product"
             + "\n\t2 - Show the product in the shopping cart"
+            + "\n\t3 - Show order history"
             + "\n\t0 - Exit";
     private static final String ACTIONS_PRODUCT = "\n\t1 - Add product to the shopping cart"
             + "\n\t0 - Go back";
@@ -27,6 +30,9 @@ public class MenuAuthorizedUsers {
                     break;
                 case 2:
                     viewProductBasket(user);
+                    break;
+                case 3:
+                    viewBuyingHistory(user);
                     break;
                 case 0:
                     System.exit(0);
@@ -59,13 +65,13 @@ public class MenuAuthorizedUsers {
         selectCategory(NUM_SELECT_CATEGORY);
         System.out.println("List of products:");
         ArrayList<Product> products = AppData.categories.get(NUM_SELECT_CATEGORY).getProducts();
-        System.out.format("+----+---------------------+---------+---------+%n");
-        System.out.format("| №  |  Product            | Price   | Rating  |%n");
-        System.out.format("+----+---------------------+---------+---------+%n");
+        System.out.format("+----+---------------------+-------------+---------+%n");
+        System.out.format("| №  |  Product            | Price       | Rating  |%n");
+        System.out.format("+----+---------------------+-------------+---------+%n");
         for (int i = 0; i < products.size(); i++) {
-            System.out.format("%-5s%-22s%-10s%-10s%1s", "| " + (i + 1) + ".", "| " + products.get(i).getName(), "| " + products.get(i).getPrice(), "| " + products.get(i).getRating(), "|\n");
+            System.out.format("%-5s%-22s%-14s%-10s%1s", "| " + (i + 1) + ".", "| " + products.get(i).getName(), "| " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(products.get(i).getPrice()), "| " + products.get(i).getRating(), "|\n");
         }
-        System.out.format("+----+---------------------+---------+---------+");
+        System.out.format("+----+---------------------+-------------+---------+");
         System.out.println("\n");
         selectProduct(products, user);
     }
@@ -74,7 +80,7 @@ public class MenuAuthorizedUsers {
         System.out.println("Select the product:\n");
         NUM_SELECT_PRODUCT = ScannerHelper.readInt() - 1;
         Product product = products.get(NUM_SELECT_PRODUCT);
-        System.out.println("Selected: " + product.getName() + " " + product.getPrice());
+        System.out.println("Selected: " + product.getName() + " " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(product.getPrice()));
         switch (ScannerHelper.getIntFromInput(ACTIONS_PRODUCT + MenuStart.SELECT_ACTION)) {
             case 1:
                 addProductInBasket(product, user);
@@ -94,7 +100,12 @@ public class MenuAuthorizedUsers {
     private static void viewProductBasket(User user) {
         System.out.println("Products in your shopping cart:\n");
         user.showBasket();
-//        ArrayList<Product> products = new ArrayList<>();
-        MenuBasket.startActionsMenuInBasket(user);
+        ArrayList<Product> products = new ArrayList<>();
+        MenuBasket.startActionsMenuInBasket(user, products);
+    }
+
+    private static void viewBuyingHistory(User user) {
+        System.out.println("Your order history:\n");
+        user.showBuying();
     }
 }

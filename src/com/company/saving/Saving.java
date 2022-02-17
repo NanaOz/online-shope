@@ -7,7 +7,7 @@ import com.company.User;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Saving {
+public class Saving implements Serializable{
     public static void saveToFileUsers(ArrayList<User> users, String file) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file, false))) {
             oos.writeObject(AppData.users);

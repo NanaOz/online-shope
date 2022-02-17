@@ -1,20 +1,33 @@
 package com.company;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class User implements Serializable {
     private String login;
     private String password;
     private Basket basket;
+    private BuyingHistory buyingHistory;
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
         this.basket = new Basket();
+        this.buyingHistory = new BuyingHistory();
     }
 
-    public User() {this.basket = new Basket();}
+    public User() {
+        this.basket = new Basket();
+        this.buyingHistory = new BuyingHistory();
+    }
+
+    public User(String login, String password, Basket basket, BuyingHistory buyingHistory) {
+        this.login = login;
+        this.password = password;
+        this.basket = basket;
+        this.buyingHistory = buyingHistory;
+    }
 
     public String getLogin() {
         return login;
@@ -48,11 +61,23 @@ public class User implements Serializable {
         this.basket.show();
     }
 
+    public void showBuying () {
+        this.buyingHistory.showBuyingHistory();
+    }
+
     public void deleteFromBasket(Product product) {
         this.basket.delete(product);
     }
 
-    public void deleteAllFromBasket(){this.basket.deleteAll();}
+    public void deleteAllFromBasket() {
+        this.basket.deleteAll();
+    }
+
+    public void buyProduct(ArrayList<Product>products) {
+        this.buyingHistory.addBuyingToHistory(products);
+//        this.buyingHistory.addAll(products);
+        deleteAllFromBasket();
+    }
 
 
     @Override

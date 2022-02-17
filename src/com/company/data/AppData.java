@@ -4,10 +4,11 @@ import com.company.Category;
 import com.company.Product;
 import com.company.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class AppData {
+public class AppData implements Serializable {
     public static ArrayList<Category> categories = new ArrayList<>();
     public static ArrayList<User> users = new ArrayList<>();
 

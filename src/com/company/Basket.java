@@ -1,8 +1,10 @@
 package com.company;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class Basket implements Serializable {
     private ArrayList<Product> products;
@@ -28,13 +30,13 @@ public class Basket implements Serializable {
     }
 
     public void show() {
-        System.out.format("+----+-----------------------+---------+---------+%n");
-        System.out.format("| №  | Products in your cart | Price   | Rating  |%n");
-        System.out.format("+----+-----------------------+---------+---------+%n");
+        System.out.format("+----+-----------------------+-------------+---------+%n");
+        System.out.format("| №  | Products in your cart | Price       | Rating  |%n");
+        System.out.format("+----+-----------------------+-------------+---------+%n");
         for (int i = 0; i < products.size(); i++) {
-            System.out.format("%-5s%-24s%-10s%-10s%1s", "| " + (i + 1) + ".", "| " + products.get(i).getName(), "| " + products.get(i).getPrice(), "| " + products.get(i).getRating(), "|\n");
+            System.out.format("%-5s%-24s%-14s%-10s%1s", "| " + (i + 1) + ".", "| " + products.get(i).getName(), "| " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(products.get(i).getPrice()), "| " + products.get(i).getRating(), "|\n");
         }
-        System.out.format("+----+-----------------------+---------+---------+%n");
+        System.out.format("+----+-----------------------+-------------+---------+%n");
     }
 
     public void delete(Product product) {

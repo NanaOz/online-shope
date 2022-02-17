@@ -4,7 +4,9 @@ import com.company.Product;
 import com.company.User;
 import com.company.helper.ScannerHelper;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MenuBasket {
     private static final String BASKET_MENU = "\n\t1 - Buy products"
@@ -18,12 +20,12 @@ public class MenuBasket {
 
     private static int NUM_SELECT_PRODUCT_IN_BASKET;
 
-    public static void startActionsMenuInBasket(User user) {
+    public static void startActionsMenuInBasket(User user, ArrayList<Product>products) {
         boolean itContinues = true;
         while (itContinues) {
             switch (ScannerHelper.getIntFromInput(BASKET_MENU + MenuStart.SELECT_ACTION)) {
                 case 1:
-//                    buyProduct();
+                    buyProduct(user, products);
                     break;
                 case 2:
                     clearBasket(user);
@@ -52,7 +54,8 @@ public class MenuBasket {
                     //TODO добавить изменение количества товара
                     break;
                 case 0:
-                    startActionsMenuInBasket(user);
+                    itContinues = false;
+//                    startActionsMenuInBasket(user);
                     break;
                 default:
                     System.out.println(MenuStart.INCORRECT);
@@ -66,14 +69,14 @@ public class MenuBasket {
         ArrayList<Product> products = user.getBasket().getProducts();
         NUM_SELECT_PRODUCT_IN_BASKET = ScannerHelper.readInt() - 1;
         Product product = products.get(NUM_SELECT_PRODUCT_IN_BASKET);
-        System.out.println("Selected: " + product.getName() + " " + product.getPrice());
+        System.out.println("Selected: " + product.getName() + " " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(product.getPrice()));
         startActionsMenuInBasketWithSelectedProduct(product, user);
     }
 
     private static void viewProductBasket(User user) {
         System.out.println("Products in your shopping cart:\n");
         user.showBasket();
-        startActionsMenuInBasket(user);
+//        startActionsMenuInBasket(user);
     }
 
     private static void deleteProductBasket(Product product, User user) {
@@ -82,13 +85,12 @@ public class MenuBasket {
         viewProductBasket(user);
     }
 
-//TODO дописать, при покупке сохраняется в мапу.
-//    private static void buyProduct(User user) {
-//
-//
-//        System.out.println("Congratulations!Products purchased!");
-//        MenuAuthorizedUsers.startMenuWhoIsLogged(user);
-//    }
+    //TODO дописать, при покупке сохраняется в мапу.
+    private static void buyProduct(User user, ArrayList<Product> products) {
+        user.buyProduct(products);
+        System.out.println("Congratulations!Products purchased!");
+        MenuAuthorizedUsers.startMenuWhoIsLogged(user);
+    }
 
     private static void clearBasket(User user) {
         user.deleteAllFromBasket();

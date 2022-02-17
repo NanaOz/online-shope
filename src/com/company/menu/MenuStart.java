@@ -5,7 +5,10 @@ import com.company.Product;
 import com.company.User;
 import com.company.helper.ScannerHelper;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class MenuStart {
     private static final String START_MENU = "***WELCOME***"
@@ -29,6 +32,7 @@ public class MenuStart {
 
     public static void startMenuWhoIsNotLogged(ArrayList<User> users) {
         boolean itContinues = true;
+//        ResourceBundle bundleDefault = ResourceBundle.getBundle("resources", Locale.getDefault());
         while (itContinues) {
             switch (ScannerHelper.getIntFromInput(START_MENU + SELECT_ACTION)) {
                 case 1:
@@ -69,13 +73,13 @@ public class MenuStart {
         selectCategory(NUM_SELECT_CATEGORY);
         System.out.println("List of products:");
         ArrayList<Product> products = AppData.categories.get(NUM_SELECT_CATEGORY).getProducts();
-        System.out.format("+----+---------------------+---------+---------+%n");
-        System.out.format("| №  |  Product            | Price   | Rating  |%n");
-        System.out.format("+----+---------------------+---------+---------+%n");
+        System.out.format("+----+---------------------+-------------+---------+%n");
+        System.out.format("| №  |  Product            | Price       | Rating  |%n");
+        System.out.format("+----+---------------------+-------------+---------+%n");
         for (int i = 0; i < products.size(); i++) {
-            System.out.format("%-5s%-22s%-10s%-10s%1s", "| " + (i + 1) + ".", "| " + products.get(i).getName(), "| " + products.get(i).getPrice(), "| " + products.get(i).getRating(), "|\n");
+            System.out.format("%-5s%-22s%-14s%-10s%1s", "| " + (i + 1) + ".", "| " + products.get(i).getName(), "| " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(products.get(i).getPrice()), "| " + products.get(i).getRating(), "|\n");
         }
-        System.out.format("+----+---------------------+---------+---------+");
+        System.out.format("+----+---------------------+-------------+---------+");
         System.out.println("\n");
         switch (ScannerHelper.getIntFromInput(VIEWING_PRODUCTS + SELECT_ACTION)) {
             case 1:

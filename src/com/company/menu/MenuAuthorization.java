@@ -1,8 +1,6 @@
 package com.company.menu;
 
-import com.company.Category;
 import com.company.User;
-import com.company.data.AppData;
 import com.company.helper.ScannerHelper;
 
 import java.util.ArrayList;
@@ -51,7 +49,7 @@ public class MenuAuthorization {
                 return user;
             }
         }
-        System.out.println("Login or password is incorrect!");
+        System.out.println("Login or password is incorrect!!!");
         authentication();
         return user;
     }
@@ -63,7 +61,7 @@ public class MenuAuthorization {
         System.out.println("Enter your password:\n");
         user.setPassword(ScannerHelper.readString());
         Collections.addAll(users, user);
-        System.out.println("Congratulations! You are registered!");
+        System.out.println("***Congratulations! You are registered!***");
         MenuAuthorizedUsers.startMenuWhoIsLogged(user);
     }
 }
