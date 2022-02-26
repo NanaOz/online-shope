@@ -22,13 +22,6 @@ public class User implements Serializable {
         this.buyingHistory = new BuyingHistory();
     }
 
-    public User(String login, String password, Basket basket, BuyingHistory buyingHistory) {
-        this.login = login;
-        this.password = password;
-        this.basket = basket;
-        this.buyingHistory = buyingHistory;
-    }
-
     public String getLogin() {
         return login;
     }

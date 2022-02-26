@@ -34,7 +34,7 @@ public class MenuBasket {
                     selectProductInBasket(user);
                     break;
                 case 0:
-                    MenuAuthorizedUsers.startMenuWhoIsLogged(user);
+                    MenuAuthorizedUser.startMenuWhoIsLogged(user);
                     break;
                 default:
                     System.out.println(MenuStart.INCORRECT);
@@ -55,7 +55,6 @@ public class MenuBasket {
                     break;
                 case 0:
                     itContinues = false;
-//                    startActionsMenuInBasket(user);
                     break;
                 default:
                     System.out.println(MenuStart.INCORRECT);
@@ -76,24 +75,24 @@ public class MenuBasket {
     private static void viewProductBasket(User user) {
         System.out.println("Products in your shopping cart:\n");
         user.showBasket();
-//        startActionsMenuInBasket(user);
+        System.out.format("%-5s%-24s%-14s%-10s%-10s%1s", "|" , "|        TOTAL:" , "| " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(user.getBasket().total()), "| " , "| " , "|\n");
+        System.out.format("+----+-----------------------+-------------+---------+---------+%n");
     }
 
     private static void deleteProductBasket(Product product, User user) {
         user.deleteFromBasket(product);
-        System.out.println("Product has been removed from your shopping cart.\n");
+        System.out.println("** Product has been removed from your shopping cart. **\n");
         viewProductBasket(user);
     }
 
-    //TODO дописать, при покупке сохраняется в мапу.
     private static void buyProduct(User user, ArrayList<Product> products) {
         user.buyProduct(products);
-        System.out.println("Congratulations!Products purchased!");
-        MenuAuthorizedUsers.startMenuWhoIsLogged(user);
+        System.out.println("** Congratulations!Products purchased! **");
+        MenuAuthorizedUser.startMenuWhoIsLogged(user);
     }
 
     private static void clearBasket(User user) {
         user.deleteAllFromBasket();
-        System.out.println("Your shopping cart is empty....");
+        System.out.println("Your shopping cart is empty.... :(");
     }
 }

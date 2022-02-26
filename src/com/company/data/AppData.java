@@ -11,6 +11,7 @@ import java.util.Collections;
 public class AppData implements Serializable {
     public static ArrayList<Category> categories = new ArrayList<>();
     public static ArrayList<User> users = new ArrayList<>();
+    public static ArrayList<Product> products = new ArrayList<>();
 
     public static ArrayList<Category> existingProduct() {
         ArrayList<Product> outerwearProduct = new ArrayList<>();

@@ -29,16 +29,12 @@ public class BuyingHistory implements Serializable {
     }
 
     public void showBuyingHistory() {
-        System.out.format("+----+-----------------------+-------------+---------+%n");
-        System.out.format("+----+-----------------------+-------------+---------+%n");
-        System.out.format("+----+-----------------------+-------------+---------+%n");
-        System.out.format("| №  | Buying product        | Price       | Rating  |%n");
-        System.out.format("+----+-----------------------+-------------+---------+%n");
+        System.out.format("+----+-----------------------+-------------+---------+---------+%n");
+        System.out.format("| №  | Buying product        | Price       | Rating  | Date    |%n");
+        System.out.format("+----+-----------------------+-------------+---------+---------+%n");
         for (int i = 0; i < buying.size(); i++) {
-            System.out.format("%-5s%-24s%-10s%-10s%1s", "| " + (i + 1) + ".", "| " + buying.get(i).getName(), "| " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(buying.get(i).getPrice()), "| " + buying.get(i).getRating(), "|\n");
+            System.out.format("%-5s%-24s%-10s%-10s%-10s%1s", "| " + (i + 1) + ".", "| " + buying.get(i).getName(), "| " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(buying.get(i).getPrice()), "| " + buying.get(i).getRating(), "| " + date, "|\n");
         }
-        System.out.format("+----+-----------------------+-------------+---------+%n");
-        System.out.format("|    |                       |             |         |%n");
-        System.out.format("+----+-----------------------+-------------+---------+%n");
+        System.out.format("+----+-----------------------+-------------+---------+---------+%n");
     }
 }

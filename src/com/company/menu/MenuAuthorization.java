@@ -44,7 +44,7 @@ public class MenuAuthorization {
         User user = authentication();
         for (User u : users) {
             if (u.equals(user) == true) {
-                MenuAuthorizedUsers.startMenuWhoIsLogged(user);
+                MenuAuthorizedUser.startMenuWhoIsLogged(user);
                 System.out.println("Welcome, " + user.getLogin());
                 return user;
             }
@@ -62,6 +62,6 @@ public class MenuAuthorization {
         user.setPassword(ScannerHelper.readString());
         Collections.addAll(users, user);
         System.out.println("***Congratulations! You are registered!***");
-        MenuAuthorizedUsers.startMenuWhoIsLogged(user);
+        MenuAuthorizedUser.startMenuWhoIsLogged(user);
     }
 }

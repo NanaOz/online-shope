@@ -35,7 +35,7 @@ public class ScannerHelper {
     public static boolean isYes(String text) {
         System.out.print(text);
         String answer = READER.next().toLowerCase().trim().replaceAll("\\p{P}", "");
-        return "y".equals(answer) || "yes".equals(answer) || "да".equals(answer);
+        return "y".equals(answer) || "yes".equals(answer) || "да".equals(answer) || "+".equals(answer);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ScannerHelper {
             return Integer.parseInt(readString());
         }
         catch (NumberFormatException e){
-            System.out.println("Произошла ошибка при попытке ввода числа. Попробуйте еще раз.");
+            System.out.println("An error occurred while trying to enter a number. Try again.");
             return readInt();
         }
     }

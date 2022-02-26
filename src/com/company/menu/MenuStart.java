@@ -1,5 +1,6 @@
 package com.company.menu;
 
+import com.company.Basket;
 import com.company.data.AppData;
 import com.company.Product;
 import com.company.User;
@@ -9,6 +10,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
 
 public class MenuStart {
     private static final String START_MENU = "***WELCOME***"
@@ -48,6 +50,7 @@ public class MenuStart {
                     break;
             }
         }
+        ScannerHelper.close();
     }
 
 
@@ -81,6 +84,10 @@ public class MenuStart {
         }
         System.out.format("+----+---------------------+-------------+---------+");
         System.out.println("\n");
+        choosingActionsAfterViewProduct(users);
+    }
+
+    private static void choosingActionsAfterViewProduct (ArrayList <User> users){
         switch (ScannerHelper.getIntFromInput(VIEWING_PRODUCTS + SELECT_ACTION)) {
             case 1:
                 viewProduct(users);
@@ -93,8 +100,6 @@ public class MenuStart {
             default:
                 System.out.println(INCORRECT);
                 break;
-
-
         }
     }
 }
