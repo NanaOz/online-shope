@@ -68,7 +68,6 @@ public class User implements Serializable {
 
     public void buyProduct(ArrayList<Product>products) {
         this.buyingHistory.addBuyingToHistory(products);
-//        this.buyingHistory.addAll(products);
         deleteAllFromBasket();
     }
 

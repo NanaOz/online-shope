@@ -93,6 +93,7 @@ public class MenuBasket {
 
     private static void clearBasket(User user) {
         user.deleteAllFromBasket();
-        System.out.println("Your shopping cart is empty.... :(");
+        System.out.println("Oops...Your shopping cart is empty.... :(");
+        MenuAuthorizedUser.startMenuWhoIsLogged(user);
     }
 }
