@@ -80,7 +80,7 @@ public class MenuAuthorizedUser {
         System.out.println("Select the product:\n");
         NUM_SELECT_PRODUCT = ScannerHelper.readInt() - 1;
         Product product = products.get(NUM_SELECT_PRODUCT);
-        System.out.println("Selected: " + product.getName() + " " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(product.getPrice()));
+        System.out.println("SELECTED PRODUCT: " + product.getName() + " " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(product.getPrice()));
         switch (ScannerHelper.getIntFromInput(ACTIONS_PRODUCT + MenuStart.SELECT_ACTION)) {
             case 1:
                 addProductInBasket(product, user);

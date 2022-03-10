@@ -7,6 +7,7 @@ import com.company.User;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 import static com.company.menu.MenuStart.startMenuWhoIsNotLogged;
 
@@ -22,6 +23,8 @@ public class Saving implements Serializable{
         ArrayList<Category> categories = InitializeFromFile.initializeFromFile(fileCategory);
         categories = AppData.existingProduct();
         SaveToFile.saveToFile(categories, fileCategory);
+//        TreeMap<Integer, ArrayList<Product>> buyHistory = InitializeFromFile.initializeFromFileBuyHistory(fileProductBuyingHistory);
+//        SaveToFile.saveToFileBuyHistory(buyHistory, fileProductBuyingHistory);
 
         startMenuWhoIsNotLogged(users);
     }

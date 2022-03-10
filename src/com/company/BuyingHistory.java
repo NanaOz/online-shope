@@ -36,10 +36,14 @@ public class BuyingHistory implements Serializable {
             System.out.format("+----+-----------------------+-------------+---------+---------+%n");
             System.out.format("| №  | Buying product        | Price       | Rating  | Date    |%n");
             System.out.format("+----+-----------------------+-------------+---------+---------+%n");
-            for (Integer integer : buyHistory.keySet()) {
-                ArrayList<Product> products =buyHistory.get(integer);
-                for (int i = 0; i < products.size(); i++){
-            System.out.format("%-5s%-24s%-10s%-10s%-10s%1s", "| " + (i + 1) + ".", "| " + products.get(i).getName(), "| " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(products.get(i).getPrice()), "| " + products.get(i).getRating(), "| " + "date", "|\n");
+//            for (Integer integer : buyHistory.keySet()) {
+//                ArrayList<Product> products =buyHistory.get(integer);
+            for (Map.Entry <Integer, ArrayList<Product>>p: buyHistory.entrySet()) {
+                ArrayList<Product> products = buyHistory.get(p);
+                for (int i = 0; i < products.size(); i++) {
+                    System.out.format("%-5s%-24s%-10s%-10s%-10s%1s", "| " + (i + 1) + ".", "| " + products.get(i).getName(), "| "
+                            + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(products.get(i).getPrice()), "| "
+                            + products.get(i).getRating(), "| " + "date", "|\n");
                 }
             }
             System.out.format("+----+-----------------------+-------------+---------+---------+%n");

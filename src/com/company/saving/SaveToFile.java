@@ -42,12 +42,12 @@ public class SaveToFile implements Serializable {
 //        }
 //    }
 //
-//    public static void saveToFile(TreeMap<String, ArrayList<Product>> buyHistory, String file) {
-//        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file, false))) {
-//            oos.writeObject(buyHistory);
-//            System.out.printf("The object is recorded\n");
-//        } catch (Exception ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//    }
+    public static void saveToFileBuyHistory(TreeMap<Integer, ArrayList<Product>> buyHistory, String file) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file, false))) {
+            oos.writeObject(buyHistory);
+            System.out.printf("The object is recorded\n");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

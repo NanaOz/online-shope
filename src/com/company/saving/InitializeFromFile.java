@@ -1,5 +1,6 @@
 package com.company.saving;
 
+import com.company.BuyingHistory;
 import com.company.Category;
 import com.company.Product;
 import com.company.User;
@@ -45,20 +46,18 @@ public class InitializeFromFile implements Serializable {
 //        return categories;
 //    }
 //
-//    public static TreeMap<String, ArrayList<Product>> initializeFromFile(String file) {
-//        TreeMap<String, ArrayList<Product>> buyHistory = new TreeMap<String, ArrayList<Product>>();
-//        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-//
-//            buyHistory = (TreeMap<String, ArrayList<Product>>) ois.readObject();
-//            int max=0;
-//            for(String key: buyHistory.keySet()){
-//                if(Integer.valueOf(key)>max) max = Integer.valueOf(key);
-//            }
-////            FigureCreateHelper.id=max;
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return buyHistory;
-//    }
+    public static TreeMap<Integer, ArrayList<Product>> initializeFromFileBuyHistory(String file) {
+        TreeMap<Integer, ArrayList<Product>> buyHistory = new TreeMap<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            buyHistory = (TreeMap<Integer, ArrayList<Product>>) ois.readObject();
+            int max=0;
+            for(Integer key: buyHistory.keySet()){
+                if(Integer.valueOf(key)>max) max = Integer.valueOf(key);
+            }
+            BuyingHistory.id=max;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return buyHistory;
+    }
 }
