@@ -26,7 +26,9 @@ public class Basket implements Serializable {
         System.out.format("| №  | Products in your cart | Price       | Rating  |Number   |%n");
         System.out.format("+----+-----------------------+-------------+---------+---------+%n");
         for (int i = 0; i < products.size(); i++) {
-            System.out.format("%-5s%-24s%-14s%-10s%-10s%1s", "| " + (i + 1) + ".", "| " + products.get(i).getName(), "| " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(products.get(i).getPrice()), "| " + products.get(i).getRating(), "| " + "кол-во", "|\n");
+            System.out.format("%-5s%-24s%-14s%-10s%-10s%1s", "| " + (i + 1) + ".", "| " + products.get(i).getName(), "| "
+                    + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(products.get(i).getPrice()), "| "
+                    + products.get(i).getRating(), "| " + "кол-во", "|\n");
         }
         System.out.format("+----+-----------------------+-------------+---------+---------+%n");
     }

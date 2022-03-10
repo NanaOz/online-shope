@@ -16,12 +16,12 @@ public class Saving implements Serializable{
     public final static String fileProductBuyingHistory = "src/com/company/data/BuyingHistory.txt";
 
     public static void startInit () {
-        ArrayList<User> users = InitializeFromFile.initializeFromFileUsers(fileUser);
+        ArrayList<User> users = InitializeFromFile.initializeFromFile(fileUser);
         users = AppData.initializeUser();
-        SaveToFile.saveToFileUsers(users, fileUser);
-        ArrayList<Category> categories = InitializeFromFile.initFromFileCategories(fileCategory);
+        SaveToFile.saveToFile(users, fileUser);
+        ArrayList<Category> categories = InitializeFromFile.initializeFromFile(fileCategory);
         categories = AppData.existingProduct();
-        SaveToFile.saveToFileCategories(categories, fileCategory);
+        SaveToFile.saveToFile(categories, fileCategory);
 
         startMenuWhoIsNotLogged(users);
     }
