@@ -46,8 +46,8 @@ public class User implements Serializable {
         this.basket = basket;
     }
 
-    public void addProductToBasket(Product product) {
-        this.basket.addBasket(product);
+    public void addProductToBasket(Product product, Integer quantity) {
+        this.basket.addBasket(product, quantity);
     }
 
     public void showBasket() {

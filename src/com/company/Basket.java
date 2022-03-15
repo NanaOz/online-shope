@@ -2,35 +2,36 @@ package com.company;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
 
 public class Basket implements Serializable {
-    private ArrayList<Product> products;
+    private HashMap<Product, Integer> products;
 
     public Basket() {
-        this.products = new ArrayList<>();
+        this.products = new HashMap<>();
     }
 
-    public ArrayList<Product> getProducts() {
+    public HashMap<Product, Integer> getProducts() {
         return products;
     }
 
-    public void addBasket(Product product) {
-        this.products.add(product);
+    public void addBasket(Product product, Integer quantity) {
+        this.products.put(product, quantity);
     }
 
     public void show() {
-        System.out.format("+----+-----------------------+-------------+---------+---------+%n");
-        System.out.format("| №  | Products in your cart | Price       | Rating  |Number   |%n");
-        System.out.format("+----+-----------------------+-------------+---------+---------+%n");
-        for (int i = 0; i < products.size(); i++) {
-            System.out.format("%-5s%-24s%-14s%-10s%-10s%1s", "| " + (i + 1) + ".", "| " + products.get(i).getName(), "| "
-                    + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(products.get(i).getPrice()), "| "
-                    + products.get(i).getRating(), "| " + "кол-во", "|\n");
+        int i = 1;
+        System.out.format("+----+-----------------------+-------------+---------+---------+-------------+%n");
+        System.out.format("| №  | Products in your cart | Price       | Rating  |Number   |Total        |%n");
+        System.out.format("+----+-----------------------+-------------+---------+---------+-------------+%n");
+        for (Map.Entry<Product, Integer> product : products.entrySet()) {
+            System.out.format("%-5s%-24s%-14s%-10s%-10s%-14s%1s", "| " + (i) + ".", "| " + product.getKey().getName(), "| "
+                    + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(product.getKey().getPrice()), "| "
+                    + product.getKey().getRating(), "| " + product.getValue(), "| "
+                    + NumberFormat.getCurrencyInstance(Locale.getDefault()).format((product.getKey().getPrice())*(product.getValue())), "|\n");
+            i++;
         }
-        System.out.format("+----+-----------------------+-------------+---------+---------+%n");
+        System.out.format("+----+-----------------------+-------------+---------+---------+-------------+%n");
     }
 
     public void delete(Product product) {
@@ -38,13 +39,13 @@ public class Basket implements Serializable {
     }
 
     public void deleteAll() {
-        this.products.removeAll(products);
+        this.products.clear();
     }
 
     public double total() {
         double sum = 0;
-        for (Product product : products) {
-            sum += product.getPrice();
+        for (Map.Entry<Product, Integer> product : products.entrySet()) {
+            sum += (product.getKey().getPrice())*(product.getValue());
         }
         return sum;
     }

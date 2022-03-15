@@ -91,11 +91,10 @@ public class MenuAuthorizedUser {
         }
     }
 
-    //TODO количество товара
     private static void addProductInBasket(Product product, User user) {
-        user.addProductToBasket(product);
-//        System.out.println("Specify the number of products");
-//        int number = ScannerHelper.readInt();
+        System.out.println("Specify the number of products");
+        int number = ScannerHelper.readInt();
+        user.addProductToBasket(product, number);
         System.out.println("** Great! The product has been added to the cart. **\n");
 
     }
@@ -103,8 +102,9 @@ public class MenuAuthorizedUser {
     private static void viewProductBasket(User user) {
         System.out.println("Products in your shopping cart:\n");
         user.showBasket();
-        System.out.format("%-5s%-24s%-14s%-10s%-10s%1s", "|" , "|        TOTAL:" , "| " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(user.getBasket().total()), "| " , "| " , "|\n");
-        System.out.format("+----+-----------------------+-------------+---------+---------+%n");
+        System.out.format("%-5s%58s%-14s%1s", "|" , "TOTAL:" , "| "
+                + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(user.getBasket().total()) , "|\n");
+        System.out.format("+----+-----------------------+-------------+---------+---------+-------------+%n");
         ArrayList<Product> products = new ArrayList<>();
         MenuBasket.startActionsMenuInBasket(user, products);
     }

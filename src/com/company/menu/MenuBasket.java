@@ -6,6 +6,7 @@ import com.company.helper.ScannerHelper;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class MenuBasket {
@@ -18,7 +19,7 @@ public class MenuBasket {
             + "\n\t2 - Change the number of product"
             + "\n\t0 - Go back to the main menu";
 
-    private static int NUM_SELECT_PRODUCT_IN_BASKET;
+    private static Integer NUM_SELECT_PRODUCT_IN_BASKET;
 
     public static void startActionsMenuInBasket(User user, ArrayList<Product>products) {
         boolean itContinues = true;
@@ -65,11 +66,13 @@ public class MenuBasket {
 
     private static void selectProductInBasket(User user) {
         System.out.println("Select the product:\n");
-        ArrayList<Product> products = user.getBasket().getProducts();
+//        ArrayList<Product> products = user.getBasket().getProducts();
+        HashMap<Product, Integer> products = user.getBasket().getProducts();
         NUM_SELECT_PRODUCT_IN_BASKET = ScannerHelper.readInt() - 1;
-        Product product = products.get(NUM_SELECT_PRODUCT_IN_BASKET);
-        System.out.println("Selected: " + product.getName() + " " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(product.getPrice()));
-        startActionsMenuInBasketWithSelectedProduct(product, user);
+//        Product product = products.get(p, NUM_SELECT_PRODUCT_IN_BASKET);
+////        Product product = products.get(NUM_SELECT_PRODUCT_IN_BASKET);
+//        System.out.println("Selected: " + product.getName() + " " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(product.getPrice()));
+//        startActionsMenuInBasketWithSelectedProduct(product, user);
     }
 
     private static void viewProductBasket(User user) {
