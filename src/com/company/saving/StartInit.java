@@ -15,7 +15,9 @@ public class StartInit {
     public static void startInit() {
 
         ArrayList<User> users = InitializeFromFile.initializeFromFile(fileUser);
+        users = AppData.initializeUser();
         ArrayList<Category> categories = InitializeFromFile.initializeFromFile(fileCategory);
+        categories = AppData.existingProduct();
 
         startMenuWhoIsNotLogged(users, categories); //передача юзер+категория
     }

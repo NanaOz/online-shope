@@ -1,13 +1,16 @@
 package com.company.menu;
 
+import com.company.Category;
 import com.company.User;
+import com.company.data.AppData;
 import com.company.helper.ScannerHelper;
+import com.company.saving.InitializeFromFile;
+import com.company.saving.StartInit;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class MenuAuthorization {
-    private ArrayList<User> users;
     private static final String AUTHENTICATION_MENU = "\t1 - Log in"
             + "\n\t2 - Register"
             + "\n\t0 - Back";
@@ -17,10 +20,10 @@ public class MenuAuthorization {
         while (itContinues) {
             switch (ScannerHelper.getIntFromInput(AUTHENTICATION_MENU + MenuStart.SELECT_ACTION)) {
                 case 1:
-                    login(users);
+                    login(users);//TODO
                     break;
                 case 2:
-                    registration(users);
+                    registration(users);//TODO
                     break;
                 case 0:
                     System.exit(0);
@@ -31,7 +34,7 @@ public class MenuAuthorization {
         }
     }
 
-    private static User authentication() {
+    private static User authentication( ) {
         User user = new User();
         System.out.print("Login:\n");
         user.setLogin(ScannerHelper.readString());
@@ -44,7 +47,7 @@ public class MenuAuthorization {
         User user = authentication();
         for (User u : users) {
             if (u.equals(user) == true) {
-                MenuAuthorizedUser.startMenuWhoIsLogged(user);
+                MenuAuthorizedUser.startMenuWhoIsLogged(user, InitializeFromFile.initializeFromFile(StartInit.fileCategory));
                 System.out.println("Welcome, " + user.getLogin());
                 return user;
             }
@@ -62,6 +65,6 @@ public class MenuAuthorization {
         user.setPassword(ScannerHelper.readString());
         Collections.addAll(users, user);
         System.out.println("***Congratulations! You are registered!***");
-        MenuAuthorizedUser.startMenuWhoIsLogged(user);
+        MenuAuthorizedUser.startMenuWhoIsLogged(user, InitializeFromFile.initializeFromFile(StartInit.fileCategory));
     }
 }

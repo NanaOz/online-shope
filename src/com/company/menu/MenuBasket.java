@@ -2,6 +2,7 @@ package com.company.menu;
 
 import com.company.Product;
 import com.company.User;
+import com.company.data.AppData;
 import com.company.helper.ScannerHelper;
 
 import java.text.NumberFormat;
@@ -26,7 +27,7 @@ public class MenuBasket {
         while (itContinues) {
             switch (ScannerHelper.getIntFromInput(BASKET_MENU + MenuStart.SELECT_ACTION)) {
                 case 1:
-                    buyProduct(user, products);
+                    buyProduct(user);
                     break;
                 case 2:
                     clearBasket(user);
@@ -35,7 +36,7 @@ public class MenuBasket {
                     selectProductInBasket(user);
                     break;
                 case 0:
-                    MenuAuthorizedUser.startMenuWhoIsLogged(user);
+                    MenuAuthorizedUser.startMenuWhoIsLogged(user, AppData.categories);
                     break;
                 default:
                     System.out.println(MenuStart.INCORRECT);
@@ -88,15 +89,22 @@ public class MenuBasket {
         viewProductBasket(user);
     }
 
-    private static void buyProduct(User user, ArrayList<Product> products) {
-        user.buyProduct(products);
+//    private static void buyProduct(User user, ArrayList<Product> products) {
+//        user.buyProduct(products);
+//        System.out.println("** Congratulations!Products purchased! **");
+//        MenuAuthorizedUser.startMenuWhoIsLogged(user);
+//    }
+
+    private static void buyProduct(User user) {
+//        user.buyProduct(Product, Integer);
         System.out.println("** Congratulations!Products purchased! **");
-        MenuAuthorizedUser.startMenuWhoIsLogged(user);
+        MenuAuthorizedUser.startMenuWhoIsLogged(user, AppData.categories);
     }
 
     private static void clearBasket(User user) {
         user.deleteAllFromBasket();
+        // map.entrySet().removeIf(entry -> entry.getKey() != 1); удаление ключ+знач
         System.out.println("Oops...Your shopping cart is empty.... :(");
-        MenuAuthorizedUser.startMenuWhoIsLogged(user);
+        MenuAuthorizedUser.startMenuWhoIsLogged(user, AppData.categories);
     }
 }

@@ -66,11 +66,15 @@ public class User implements Serializable {
         this.basket.deleteAll();
     }
 
-    public void buyProduct(ArrayList<Product>products) {
-        this.buyingHistory.addBuyingToHistory(products);
+//    public void buyProduct(ArrayList<Product>products) {
+//        this.buyingHistory.addBuyingToHistory(products);
+//        deleteAllFromBasket();
+//    }
+
+    public void buyProduct(Product product, Integer quantity) {
+        this.buyingHistory.addBuyingToHistory(product, quantity);
         deleteAllFromBasket();
     }
-
 
     @Override
     public String toString() {

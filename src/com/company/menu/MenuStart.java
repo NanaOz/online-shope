@@ -5,6 +5,8 @@ import com.company.data.AppData;
 import com.company.Product;
 import com.company.User;
 import com.company.helper.ScannerHelper;
+import com.company.saving.InitializeFromFile;
+import com.company.saving.StartInit;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class MenuStart {
             + "\n\t2 - Authorization"
             + "\n\t0 - Exit";
     private static final String VIEWING_PRODUCTS = "\n\t1 - Go back to selecting categories"
+            + "\n\t2 - Go back to the main menu"
             + "\n\t0 - Exit the program";
 
     public static final String INCORRECT = "THERE IS NO SUCH ACTION!!!";
@@ -83,6 +86,8 @@ public class MenuStart {
             case 1:
                 viewProduct(categories);
                 break;
+            case 2:
+                startMenuWhoIsNotLogged(AppData.users, categories);
             case 0:
                 System.exit(0);
             default:
