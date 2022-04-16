@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class MenuAuthorization {
-    private static final String AUTHENTICATION_MENU = "\t1 - Log in"
-            + "\n\t2 - Register"
-            + "\n\t0 - Back";
+    private static final String AUTHENTICATION_MENU = "\t1 - Log in || Войти"
+            + "\n\t2 - Register || Зарегистрироваться"
+            + "\n\t0 - Back || Назад";
 
     public static void startMenuAuthentication(ArrayList<User> users) {
         boolean itContinues = true;
@@ -36,9 +36,9 @@ public class MenuAuthorization {
 
     private static User authentication( ) {
         User user = new User();
-        System.out.print("Login:\n");
+        System.out.print("Login: || Логин:\n");
         user.setLogin(ScannerHelper.readString());
-        System.out.print("Password:\n");
+        System.out.print("Password: || Пароль:\n");
         user.setPassword(ScannerHelper.readString());
         return user;
     }

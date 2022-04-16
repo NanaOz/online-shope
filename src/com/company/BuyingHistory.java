@@ -5,11 +5,17 @@ import java.text.NumberFormat;
 import java.util.*;
 
 public class BuyingHistory implements Serializable {
+    private Date date;
     private HashMap<Product, Integer> buyHistory;
     public static int id = 1;
 
     public BuyingHistory() {
         this.buyHistory = new HashMap<>();
+    }
+
+    public BuyingHistory(Date date, HashMap<Product, Integer> buyHistory) {
+        this.date = date;
+        this.buyHistory = buyHistory;
     }
 
 //    public void addBuyingToHistory(ArrayList<Product> products) {

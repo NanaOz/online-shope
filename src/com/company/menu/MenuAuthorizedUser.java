@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class MenuAuthorizedUser {
-    private static final String MAIN_MENU = "Select the desired menu item:"
-            + "\n\t1 - Show product"
-            + "\n\t2 - Show the product in the shopping cart"
-            + "\n\t3 - Show order history"
-            + "\n\t0 - Exit";
-    private static final String ACTIONS_PRODUCT = "\n\t1 - Add product to the shopping cart"
-            + "\n\t0 - Go back";
+    private static final String MAIN_MENU = "Select the desired menu item: || Выберите нужный пункт меню:"
+            + "\n\t1 - Show products || Показать товары"
+            + "\n\t2 - Show the products in the shopping cart || Показать товары в корзине покупок"
+            + "\n\t3 - Show order history || Показать историю заказов"
+            + "\n\t0 - Exit || Выход";
+    private static final String ACTIONS_PRODUCT = "\n\t1 - Add product to the shopping cart || Добавить товар в корзину покупок"
+            + "\n\t0 - Go back || Вернуться назад";
 
     public static void startMenuWhoIsLogged(User user, ArrayList<Category> categories) {
         boolean itContinues = true;
@@ -50,7 +50,7 @@ public class MenuAuthorizedUser {
     }
 
     private static void viewCategory(ArrayList<Category> categories) {
-        System.out.println("Product categories:");
+        System.out.println("Product categories: || Категории продуктов:");
         System.out.format("+----+---------------------+%n");
         System.out.format("| №  |  Categories         |%n");
         System.out.format("+----+---------------------+%n");
@@ -63,7 +63,7 @@ public class MenuAuthorizedUser {
 
     private static int selectCategory(ArrayList<Category> categories) {
         viewCategory(categories);
-        System.out.println("Enter the category number to view the products:\n");
+        System.out.println("Enter the category number to view the products: || Выберите категорию, чтобы просмотреть товары:\n");
         int num = ScannerHelper.readInt() - 1;
         return num;
     }
@@ -86,7 +86,7 @@ public class MenuAuthorizedUser {
     }
 
     private static void selectProduct(User user, ArrayList<Product> products) {
-        System.out.println("Select the product:\n");
+        System.out.println("Select the product: || Выберите товар:\n");
         int num = ScannerHelper.readInt() - 1;
         Product product = products.get(num);
         System.out.println("SELECTED PRODUCT: " + product.getName() + " "
@@ -102,24 +102,26 @@ public class MenuAuthorizedUser {
     }
 
     private static void addProductInBasket(Product product, User user) {
-        System.out.println("Specify the number of products");
-        int number = ScannerHelper.readInt();
-        user.addProductToBasket(product, number);
-        System.out.println("** Great! The product has been added to the cart. **\n");
+        System.out.println("Specify the number of products || Укажите количество товара");
+//        int number = ScannerHelper.readInt(); //мб сделать стат переменную
+//        user.addProductToBasket(product, number);
+        MenuBasket.NUM_SELECT_PRODUCT_IN_BASKET = ScannerHelper.readInt();
+        user.addProductToBasket(product, MenuBasket.NUM_SELECT_PRODUCT_IN_BASKET);
+        System.out.println("** Great! The product has been added to the cart. || Отлично! Товар был добавлен в корзину. **\n");
     }
 
     private static void viewProductBasket(User user) {
-        System.out.println("Products in your shopping cart:\n");
+        System.out.println("Products in your shopping cart: || Товары в вашей корзине покупок:\n");
         user.showBasket();
         System.out.format("%-5s%58s%-14s%1s", "|" , "TOTAL:" , "| "
                 + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(user.getBasket().total()) , "|\n");
         System.out.format("+----+-----------------------+-------------+---------+---------+-------------+%n");
         ArrayList<Product> products = new ArrayList<>();
-        MenuBasket.startActionsMenuInBasket(user, products);
+        MenuBasket.startActionsMenuInBasket(user);
     }
 
     private static void viewBuyingHistory(User user) {
-        System.out.println("Your order history:\n");
+        System.out.println("Your order history: || История ваших заказов:\n");
         user.showBuying();
     }
 }

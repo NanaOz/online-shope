@@ -15,15 +15,15 @@ import java.util.Locale;
 
 public class MenuStart {
     private static final String START_MENU = "***WELCOME***"
-            + "\n\t1 - Show product"
-            + "\n\t2 - Authorization"
-            + "\n\t0 - Exit";
-    private static final String VIEWING_PRODUCTS = "\n\t1 - Go back to selecting categories"
-            + "\n\t2 - Go back to the main menu"
-            + "\n\t0 - Exit the program";
+            + "\n\t1 - Show product || Показать товары"
+            + "\n\t2 - Authorization || Авторизация"
+            + "\n\t0 - Exit || Выход";
+    private static final String VIEWING_PRODUCTS = "\n\t1 - Go back to selecting categories || Вернуться к выбору категорий"
+            + "\n\t2 - Go back to the main menu || Вернуться в главное меню"
+            + "\n\t0 - Exit the program || Выйти из программы";
 
-    public static final String INCORRECT = "THERE IS NO SUCH ACTION!!!";
-    public static final String SELECT_ACTION = "\nSELECT AN ACTION:\n ";
+    public static final String INCORRECT = "THERE IS NO SUCH ACTION!!! || НЕТ ТАКОГО ДЕЙСТВИЯ!!!";
+    public static final String SELECT_ACTION = "\nSELECT AN ACTION: || ВЫБЕРИТЕ ДЕЙСТВИЕ:\n ";
 
 
     public static void startMenuWhoIsNotLogged(ArrayList <User> users, ArrayList<Category> categories) {
@@ -61,7 +61,7 @@ public class MenuStart {
 
     private static int selectCategory(ArrayList<Category> categories) {
         viewCategory(categories);
-        System.out.println("Enter the category number to view the products:\n");
+        System.out.println("Enter the category number to view the products: || Выберите категорию, чтобы просмотреть товары:\n");
         int num = ScannerHelper.readInt() - 1;
         return num;
     }

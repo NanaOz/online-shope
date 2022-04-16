@@ -11,23 +11,25 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class MenuBasket {
-    private static final String BASKET_MENU = "\n\t1 - Buy products"
-            + "\n\t2 - Clear the shopping cart"
-            + "\n\t3 - Select a product to change"
-            + "\n\t0 - Go back to the main menu";
-    private static final String CHANGE_BASKET = "\nChoose what you want to do:"
-            + "\n\t1 - Remove a product from the shopping cart"
-            + "\n\t2 - Change the number of product"
-            + "\n\t0 - Go back to the main menu";
+    public static int NUM_SELECT_PRODUCT_IN_BASKET;
+    private static final String BASKET_MENU = "\n\t1 - Buy products || Купить товары"
+            + "\n\t2 - Clear the shopping cart || Очистить корзину"
+            + "\n\t3 - Select a product to change || Выбрать товар для изменения"
+            + "\n\t0 - Go back to the main menu || Вернуться в главное меню";
+    private static final String CHANGE_BASKET = "\nChoose what you want to do: || Выберите, что вы хотите сделать:"
+            + "\n\t1 - Remove a product from the shopping cart || Удалить товар из корзины"
+            + "\n\t2 - Change the number of product || Измените количество товара"
+            + "\n\t0 - Go back to the main menu || Вернуться в главное меню";
 
-    private static Integer NUM_SELECT_PRODUCT_IN_BASKET;
+//    private static Integer NUM_SELECT_PRODUCT_IN_BASKET;
 
-    public static void startActionsMenuInBasket(User user, ArrayList<Product>products) {
+
+    public static void startActionsMenuInBasket(User user) {
         boolean itContinues = true;
         while (itContinues) {
             switch (ScannerHelper.getIntFromInput(BASKET_MENU + MenuStart.SELECT_ACTION)) {
                 case 1:
-                    buyProduct(user);
+                    buyProduct();
                     break;
                 case 2:
                     clearBasket(user);
@@ -66,7 +68,7 @@ public class MenuBasket {
     }
 
     private static void selectProductInBasket(User user) {
-        System.out.println("Select the product:\n");
+        System.out.println("Select the product: || Выберите товар:\n");
 //        ArrayList<Product> products = user.getBasket().getProducts();
         HashMap<Product, Integer> products = user.getBasket().getProducts();
         NUM_SELECT_PRODUCT_IN_BASKET = ScannerHelper.readInt() - 1;
@@ -77,7 +79,7 @@ public class MenuBasket {
     }
 
     private static void viewProductBasket(User user) {
-        System.out.println("Products in your shopping cart:\n");
+        System.out.println("Products in your shopping cart: || Товары в вашей корзине:\n");
         user.showBasket();
         System.out.format("%-5s%-24s%-14s%-10s%-10s%1s", "|" , "|        TOTAL:" , "| " + NumberFormat.getCurrencyInstance(Locale.getDefault()).format(user.getBasket().total()), "| " , "| " , "|\n");
         System.out.format("+----+-----------------------+-------------+---------+---------+%n");
@@ -85,7 +87,7 @@ public class MenuBasket {
 
     private static void deleteProductBasket(Product product, User user) {
         user.deleteFromBasket(product);
-        System.out.println("** Product has been removed from your shopping cart. **\n");
+        System.out.println("** Product has been removed from your shopping cart. || Товар был удален из вашей корзины. **\n");
         viewProductBasket(user);
     }
 
@@ -95,9 +97,9 @@ public class MenuBasket {
 //        MenuAuthorizedUser.startMenuWhoIsLogged(user);
 //    }
 
-    private static void buyProduct(User user) {
-//        user.buyProduct(Product, Integer);
-        System.out.println("** Congratulations!Products purchased! **");
+    private static void buyProduct(Product product, User user) {
+        user.buyProduct(product, NUM_SELECT_PRODUCT_IN_BASKET);
+        System.out.println("** Congratulations!Products purchased! || Поздравляю!Товары успешно куплены!**");
         MenuAuthorizedUser.startMenuWhoIsLogged(user, AppData.categories);
     }
 
