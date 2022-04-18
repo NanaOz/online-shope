@@ -1,27 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="Style.css"/>
     <title>Menu</title>
 </head>
 <body>
+<!--<header th:insert="block/head :: head"></header>-->
+<!--поменять шапку магазина (ЛК, вход/регистрация, значек корзины) и вынести шапку в отдельный html -->
+<!--добавить товары через бд (картина, название, цена) + кнопка добавления в корзину)-->
+<!--ЛК (отображение корзины, профиль итд)-->
 
-//добавить шапку меню
-//добавить нижнюю часть сайта, например контакты
+<nav>
+    <ul class="topmenu">
+        <li><a href="MenuSite.html">Home</a></li>
+        <li><a href="MenuSite.html" class="down">Catalog</a>
+            <ul class="submenu">
+                <li><a href="OuterwearMenu.html">Outerwear</a></li>
+                <li><a href="PantsMenu.html">Pants</a></li>
+                <li><a href="HeaddressMenu.html">Headdress</a></li>
+            </ul>
+        </li>
+        <li><a href="" class="down">Personal account</a>
+            <ul class="submenu">
+                <li><a href="">Log in/Register</a></li>
+                <li><a href="">Shopping cart</a></li>
+            </ul>
+        </li>
+        <li><a href="">Contact</a></li>
+    </ul>
+</nav>
 
 <ul class="card-list">
-
     <li class="card">
         <a class="card-image" href="OuterwearMenu.html" target="_blank"
            style="background-image: url(https://res.cloudinary.com/teepublic/image/private/s--Fs0TdNMz--/t_Resized%20Artwork/c_crop,x_10,y_10/c_fit,w_423/c_crop,g_north_west,h_626,w_470,x_-23,y_0/g_north_west,u_upload:v1462829024:production:blanks:a59x1cgomgu5lprfjlmi,x_-418,y_-325/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1586217806/production/designs/8920391_0.jpg);"
            data-image-full="https://res.cloudinary.com/teepublic/image/private/s--Fs0TdNMz--/t_Resized%20Artwork/c_crop,x_10,y_10/c_fit,w_423/c_crop,g_north_west,h_626,w_470,x_-23,y_0/g_north_west,u_upload:v1462829024:production:blanks:a59x1cgomgu5lprfjlmi,x_-418,y_-325/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1586217806/production/designs/8920391_0.jpg">
-            <img src="https://res.cloudinary.com/teepublic/image/private/s--Fs0TdNMz--/t_Resized%20Artwork/c_crop,x_10,y_10/c_fit,w_423/c_crop,g_north_west,h_626,w_470,x_-23,y_0/g_north_west,u_upload:v1462829024:production:blanks:a59x1cgomgu5lprfjlmi,x_-418,y_-325/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1586217806/production/designs/8920391_0.jpg" alt="The Beautiful Outerwear" />
+            <img src="https://res.cloudinary.com/teepublic/image/private/s--Fs0TdNMz--/t_Resized%20Artwork/c_crop,x_10,y_10/c_fit,w_423/c_crop,g_north_west,h_626,w_470,x_-23,y_0/g_north_west,u_upload:v1462829024:production:blanks:a59x1cgomgu5lprfjlmi,x_-418,y_-325/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1586217806/production/designs/8920391_0.jpg"
+                 alt="The Beautiful Outerwear"/>
         </a>
 
         <a class="card-description" href="OuterwearMenu.html" target="_blank">
             <h2>Outerwear</h2>
-            <p>Make your choice</p>
         </a>
     </li>
 
@@ -29,12 +49,12 @@
         <a class="card-image" href="PantsMenu.html" target="_blank"
            style="background-image: url(https://cdn.cliqueinc.com/posts/286154/loose-trouser-trend-286154-1585668553765-main.700x0c.jpg);"
            data-image-full="https://cdn.cliqueinc.com/posts/286154/loose-trouser-trend-286154-1585668553765-main.700x0c.jpg">
-            <img src="https://cdn.cliqueinc.com/posts/286154/loose-trouser-trend-286154-1585668553765-main.700x0c.jpg" alt="The Beautiful Pants" />
+            <img src="https://cdn.cliqueinc.com/posts/286154/loose-trouser-trend-286154-1585668553765-main.700x0c.jpg"
+                 alt="The Beautiful Pants"/>
         </a>
 
         <a class="card-description" href="PantsMenu.html" target="_blank">
             <h2>Pants</h2>
-            <p>Make your choice</p>
         </a>
     </li>
 
@@ -42,30 +62,15 @@
         <a class="card-image" href="HeaddressMenu.html" target="_blank"
            style="background-image: url(https://balenciaga.dam.kering.com/m/5b337a703f818263/Medium-529192310B21077_I.jpg?v=3);"
            data-image-full="https://balenciaga.dam.kering.com/m/5b337a703f818263/Medium-529192310B21077_I.jpg?v=3">
-            <img src="https://balenciaga.dam.kering.com/m/5b337a703f818263/Medium-529192310B21077_I.jpg?v=3" alt="The Beautiful Headdress" />
+            <img src="https://balenciaga.dam.kering.com/m/5b337a703f818263/Medium-529192310B21077_I.jpg?v=3"
+                 alt="The Beautiful Headdress"/>
         </a>
 
         <a class="card-description" href="HeaddressMenu.html" target="_blank">
             <h2>Headdress</h2>
-            <p>Make your choice</p>
         </a>
     </li>
-
-<!--    <li class="card">-->
-<!--        <a class="card-image" href="https://www.google.com/" target="_blank"-->
-<!--           style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/jane-doe-100.jpg);"-->
-<!--           data-image-full="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/jane-doe-500.jpg">-->
-<!--            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/jane-doe-100.jpg" alt="Jane Doe" />-->
-<!--        </a>-->
-
-<!--        <a class="card-description" href="https://www.google.com/" target="_blank">-->
-<!--            <h2>Jane Doe</h2>-->
-<!--            <p>Converge</p>-->
-<!--        </a>-->
-<!--    </li>-->
-
 </ul>
-
 
 
 <script src="JS.js"></script>
