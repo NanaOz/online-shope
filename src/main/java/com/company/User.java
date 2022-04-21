@@ -8,19 +8,31 @@ public class User implements Serializable {
     private String login;
     private String password;
     private Basket basket;
-    private BuyingHistory buyingHistory;
+//    private BuyingHistory buyingHistory;
+    private ArrayList<BuyingHistory> buyingHistory;
+
+//    public User(String login, String password) {
+//        this.login = login;
+//        this.password = password;
+//        this.basket = new Basket();
+//        this.buyingHistory = new BuyingHistory();
+//    }
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
         this.basket = new Basket();
-        this.buyingHistory = new BuyingHistory();
+        this.buyingHistory = new ArrayList<>();
     }
 
-    public User() {
-        this.basket = new Basket();
-        this.buyingHistory = new BuyingHistory();
-    }
+//    public User() {
+//        this.basket = new Basket();
+//        this.buyingHistory = new BuyingHistory();
+//    }
+public User() {
+    this.basket = new Basket();
+    this.buyingHistory = new ArrayList<>();
+}
 
     public String getLogin() {
         return login;
@@ -50,31 +62,34 @@ public class User implements Serializable {
         this.basket.addBasket(product, quantity);
     }
 
+    public void showBuyingHis (BuyingHistory buyingHistory) {
+        this.buyingHistory.add(buyingHistory);
+    }
+
     public void showBasket() {
         this.basket.show();
     }
 
-    public void showBuying () {
-        this.buyingHistory.showBuyingHistory();
-    }
+//    public void showBuying () {
+//        this.buyingHistory.showBuyingHistory();
+//    }
 
     public void deleteFromBasket(Product product) {
         this.basket.delete(product);
     }
 
     public void deleteAllFromBasket() {
-        this.basket.deleteAll();
+        this.basket.getProducts().clear();
     }
 
-//    public void buyProduct(ArrayList<Product>products) {
-//        this.buyingHistory.addBuyingToHistory(products);
+//    public void buyProduct(Product product, Integer quantity) {
+//        this.buyingHistory.addBuyingToHistory(product, quantity);
 //        deleteAllFromBasket();
 //    }
 
-    public void buyProduct(Product product, Integer quantity) {
-        this.buyingHistory.addBuyingToHistory(product, quantity);
-        deleteAllFromBasket();
-    }
+//    public  void buyProduct (){
+//        this.buyingHistory.addBuyingToHistory();
+//    }
 
     @Override
     public String toString() {

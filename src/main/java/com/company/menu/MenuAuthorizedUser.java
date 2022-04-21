@@ -1,5 +1,6 @@
 package com.company.menu;
 
+import com.company.BuyingHistory;
 import com.company.Category;
 import com.company.data.AppData;
 import com.company.Product;
@@ -122,6 +123,7 @@ public class MenuAuthorizedUser {
 
     private static void viewBuyingHistory(User user) {
         System.out.println("Your order history: || История ваших заказов:\n");
-        user.showBuying();
+//        user.showBuyingHis(user.);
+
     }
 }

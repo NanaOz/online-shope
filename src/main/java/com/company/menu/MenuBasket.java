@@ -1,5 +1,6 @@
 package com.company.menu;
 
+import com.company.BuyingHistory;
 import com.company.Product;
 import com.company.User;
 import com.company.data.AppData;
@@ -29,7 +30,7 @@ public class MenuBasket {
         while (itContinues) {
             switch (ScannerHelper.getIntFromInput(BASKET_MENU + MenuStart.SELECT_ACTION)) {
                 case 1:
-                    buyProduct();
+                    buyProduct(user);
                     break;
                 case 2:
                     clearBasket(user);
@@ -91,14 +92,12 @@ public class MenuBasket {
         viewProductBasket(user);
     }
 
-//    private static void buyProduct(User user, ArrayList<Product> products) {
-//        user.buyProduct(products);
-//        System.out.println("** Congratulations!Products purchased! **");
-//        MenuAuthorizedUser.startMenuWhoIsLogged(user);
-//    }
-
-    private static void buyProduct(Product product, User user) {
-        user.buyProduct(product, NUM_SELECT_PRODUCT_IN_BASKET);
+    private static void buyProduct(User user) {
+//        user.buyProduct(product, NUM_SELECT_PRODUCT_IN_BASKET);
+        HashMap<Product, Integer> buyingHistory = user.getBasket().getProducts();
+        BuyingHistory buyingHis = new BuyingHistory(BuyingHistory.addBuyingProducts(buyingHistory));
+        user.showBuyingHis(buyingHis);
+        user.deleteAllFromBasket();
         System.out.println("** Congratulations!Products purchased! || Поздравляю!Товары успешно куплены!**");
         MenuAuthorizedUser.startMenuWhoIsLogged(user, AppData.categories);
     }

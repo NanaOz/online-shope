@@ -7,7 +7,7 @@ import java.util.*;
 public class BuyingHistory implements Serializable {
     private Date date;
     private HashMap<Product, Integer> buyHistory;
-    public static int id = 1;
+//    public static int id = 1;
 
     public BuyingHistory() {
         this.buyHistory = new HashMap<>();
@@ -18,12 +18,30 @@ public class BuyingHistory implements Serializable {
         this.buyHistory = buyHistory;
     }
 
-//    public void addBuyingToHistory(ArrayList<Product> products) {
-//        this.buyHistory.put(id++, products);
+    public BuyingHistory(HashMap<Product, Integer> addBuyingProducts) {
+        this.date = new Date();
+        this.buyHistory = buyHistory;
+    }
+
+//    public void addBuyingToHistory(Product product, Integer quantity) {
+//        this.buyHistory.put(product, quantity);
 //    }
 
-    public void addBuyingToHistory(Product product, Integer quantity) {
-        this.buyHistory.put(product, quantity);
+    public HashMap<Product, Integer> addBuyingToHistory() {
+        return buyHistory;
+    }
+
+
+    public static HashMap<Product, Integer> addBuyingProducts(HashMap<Product, Integer> buyingHistory) {
+        HashMap<Product, Integer> buyHistory = new HashMap<>();
+        for (Map.Entry<Product, Integer> product : buyingHistory.entrySet()) {
+            int i = 1;
+            int sum = 0;
+            buyHistory.put(product.getKey(), product.getValue());
+            i++;
+            sum = sum + ((int) product.getKey().getPrice() * (int) product.getValue());
+        }
+        return buyHistory;
     }
 
     public static Integer getKeyByProduct(TreeMap<Integer, ArrayList<Product>> buyHistory, Product product) {
